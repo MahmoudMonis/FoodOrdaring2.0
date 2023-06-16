@@ -6,13 +6,9 @@ using FoodOrdering.ViewModels;
 
 namespace FoodOrdering.DBAccess
 {
-
     public class DbConnection : DbContext
     {
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseNpgsql("host=localhost;port=5432;dbname=postgres;user=postgres;password=123456;sslmode=prefer;connect_timeout=10");
-
         public DbSet<FoodItem> foodItem { get; set; }
         public DbSet<Basket> Basket { get; set; }
         public DbSet<Order> order { get; set; }
@@ -22,7 +18,4 @@ namespace FoodOrdering.DBAccess
         public DbSet<User> Users { get; set; }
         public DbSet<Rating> rating { get; set; }
     }
-
-
-
 }
