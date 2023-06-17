@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FoodOrdering.Model
+namespace FoodOrdering.Models
 {
-    public class Subcategory
+    public class SubCategory
     {
-        public Category category { get; set; }
         public int Id { get; set; }
-        public int CategoryId { get; set; }
         public string Name { get; set; }
-
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FoodOrdering.Model
+namespace FoodOrdering.Models
 {
     public class User
     {
