@@ -5,14 +5,10 @@ using System.Threading.Tasks;
 
 namespace FoodOrdering.Models
 {
-    public class FoodItem
+    public class User
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public double Price { get; set; }
-
-        public int SubCategoryId { get; set; }
-        public SubCategory SubCategory { get; set; }
+        public string Email { get; set; }
     }
 }

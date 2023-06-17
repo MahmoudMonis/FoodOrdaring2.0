@@ -7,14 +7,14 @@ using Microsoft.EntityFrameworkCore;
 using FoodOrdering.ViewModels;
 using FoodOrdering.DBAccess;
 using FoodOrdering.ViewModels.SubCategory;
-using FoodOrdering.Model;
+using FoodOrdering.Models;
 namespace FoodOrdaring2.Controllers
 {
-       [ApiController]
+    [ApiController]
     [Route("[controller]/[action]")]
     public class SubCategoryController
     {
-         private readonly DbConnection _context;
+        private readonly DbConnection _context;
         public SubCategoryController(DbConnection context)
         {
             _context = context;
@@ -22,31 +22,33 @@ namespace FoodOrdaring2.Controllers
         [HttpGet]
         public async Task<IEnumerable<SubCategoryVM>> Get()
         {
-            var subCategories= await _context.SubCategories.Include(sc=>sc.category).ToListAsync();
-            return subCategories.Select(sc=>new SubCategoryVM
+            var subCategories = await _context.SubCategories.Include(sc => sc.Category).ToListAsync();
+            return subCategories.Select(sc => new SubCategoryVM
             {
-                Id=sc.Id,
-                Name=sc.Name,
-                
-                Category= new CategoryVM
+                Id = sc.Id,
+                Name = sc.Name,
+
+                Category = new CategoryVM
                 {
-                    Id=sc.category.Id,
-                    Name=sc.category.Name,
-                    
+                    Id = sc.Category.Id,
+                    Name = sc.Category.Name,
+
                 }
-                
+
             }).ToList();
         }
         [HttpPost]
-        public async Task<IActionResult> Post(CreateSubCategoryVm subCategoryVM)
+        public async Task<ActionResult<SubCategory>> Post(CreateSubCategoryVm subCategoryVM)
         {
-        var subcategory = new SubCategory{
-            Name=subCategoryVM.Name,
-            CategoryId=subCategoryVM.CategoryId,
-        };
-        _context.SubCategories.Add(subcategory);
-            await _context.SaveChangesAsync();
-            return  ok(subcategory);
-    }
+            return null;
+            // var subcategory = new SubCategory
+            // {
+            //     Name = subCategoryVM.Name,
+            //     CategoryId = subCategoryVM.CategoryId,
+            // };
+            // _context.SubCategories.Add(subcategory);
+            // await _context.SaveChangesAsync();
+            // return Ok(subcategory);
+        }
     }
 }
