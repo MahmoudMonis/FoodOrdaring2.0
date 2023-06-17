@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FoodOrdering.ViewModels.vm
+namespace FoodOrdering.ViewModels.foodItem
 {
-    public class CreateFoodItemVM
+    public class CreateFoodVM
     {
         public string Name { get; set; }
 

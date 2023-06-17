@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FoodOrdering.ViewModels
+namespace FoodOrdaring2.ViewModels.Category
 {
     public class CreateCategoryVM
     {
-        public string Name { get; set; }
+                public string Name { get; set; }
+
     }
 }
