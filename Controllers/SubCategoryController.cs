@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using FoodOrdering.ViewModels;
 using FoodOrdering.DBAccess;
 using FoodOrdering.ViewModels.SubCategory;
-using FoodOrdering.Model;
-namespace FoodOrdaring2.Controllers
+using FoodOrdering.Models;
+namespace FoodOrdaring.Controllers
 {
        [ApiController]
     [Route("[controller]/[action]")]

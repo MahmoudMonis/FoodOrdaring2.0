@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FoodOrdaring.ViewModels.foodItem
+namespace FoodOrdaring.ViewModels.FoodItem
 {
     public class DeleteFoodVM
     {

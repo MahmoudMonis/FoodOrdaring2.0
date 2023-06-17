@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FoodOrdering.ViewModels;
-using FoodOrdering.ViewModels.foodItem;
+using FoodOrdering.ViewModels.FoodItem;
 using FoodOrdering.DBAccess;
-using FoodOrdering.Model;
-namespace FoodOrdaring2.Controllers
+using FoodOrdering.Models;
+namespace FoodOrdaring.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]

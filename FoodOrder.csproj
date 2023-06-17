@@ -8,11 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
-<<<<<<< HEAD
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.7">
-=======
     <PackageReference Include="microsoft.entityframeworkcore.design" Version="7.0.7">
->>>>>>> e5deb05fd106671b926db696d501229127bfe545
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

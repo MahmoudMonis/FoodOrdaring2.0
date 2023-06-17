@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FoodOrdaring2.ViewModels.Category;
+using FoodOrdaring.ViewModels.Category;
 using FoodOrdering.DBAccess;
-using FoodOrdering.Model;
+using FoodOrdering.Models;
 using FoodOrdering.ViewModels;
-namespace FoodOrdaring2.Controllers
+namespace FoodOrdaring.Controllers
 {
     [ApiController]
     [Route("[controller]")]

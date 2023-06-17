@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-<<<<<<< HEAD:ViewModels/FoodItem/CreateFoodItemVM.cs
-namespace FoodOrder.ViewModels.vm
-=======
-namespace FoodOrdering.ViewModels.foodItem
->>>>>>> e5deb05fd106671b926db696d501229127bfe545:ViewModels/FoodItem/CreateFoodVM.cs
+namespace FoodOrdering.ViewModels.FoodItem
 {
     public class CreateFoodVM
     {

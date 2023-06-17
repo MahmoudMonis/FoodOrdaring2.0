@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FoodOrder.ViewModels
+namespace FoodOrdering.ViewModels
 {
     public class CategoryVM
     {

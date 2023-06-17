@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace FoodOrder.ViewModels.vm
+namespace FoodOrdering.ViewModels.vm
 {
     public class CreateBasketVM
     {
