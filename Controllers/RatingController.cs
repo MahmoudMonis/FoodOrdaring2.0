@@ -12,59 +12,85 @@ using FoodOrdering.ViewModels;
 
 public class RatingController : ControllerBase
     {
-        private readonly List<Rating> _ratingList = new List<Rating>();
+        private readonly DbContext _context;
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Rating>> Get()
-        {
-            return _ratingList;
-        }
-
-        [HttpGet("{id}")]
-        public ActionResult<Rating> Get(int id)
-        {
-            var rating = _ratingList.Find(r => r.Id == id);
-            if (rating == null)
-            {
-                return NotFound();
-            }
-            {
-                return rating;
-            }
-        }
-
-        [HttpPost]
-        public ActionResult<Rating> Post(Rating rating)
-        {
-            _ratingList.Add(rating);
-            return CreatedAtAction(nameof(Get), new {id = rating.Id}, rating);
-        }
-
-        [HttpPut("{id}")]
-        public ActionResult<Rating> Put(int id, Rating rating)
-        {
-            var existingRating = _ratingList.Find(r => r.Id == id);
-            if (existingRating == null)
-            {
-                return NotFound();
-            }
-            existingRating.FoodItem = rating.FoodItem;
-            existingRating.Rate = rating.Rate;
-            existingRating.UserId = rating.UserId;
-            existingRating.FoodItemId = rating.FoodItemId;
-
-            return Ok(existingRating);
-        }
-
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
-        {
-            var rating = _ratingList.Find(r => r.Id == id);
-            if (rating == null)
-            {
-                return NotFound();
-            }
-            _ratingList.Remove(rating);
-            return NoContent();
-        }
+    public RatingController(DbContext context)
+    {
+        _context = context;
     }
+
+    [HttpGet]
+    public async Task<IEnumerable<Rating>> Get()
+    {
+        var ratingList = await _context.Set<Rating>().ToListAsync();
+        return ratingList;
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Rating>> Get(int id)
+    {
+        var rating = await _context.Set<Rating>().FirstOrDefaultAsync(r => r.Id == id);
+        if (rating == null)
+        {
+            return NotFound();
+        }
+        return rating;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Post(RatingVM vm)
+    {
+        var rating = new RatingVM();
+        {
+            /*Id = vm.Id,
+            Name = vm.Name,
+            Users = vm.Users,*/
+        };
+
+        //_context.Set<Rating>().Add(rating);
+        await _context.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, RatingVM vm)
+    {
+        var rating = await _context.Set<Rating>().FirstOrDefaultAsync(r => r.Id == id);
+        if (rating == null)
+        {
+            return NotFound();
+        }
+
+        /*rating.Id = vm.Id;
+        rating.Name = vm.Name;
+        rating.Users = vm.Users;*/
+
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var rating = await _context.Set<Rating>().FirstOrDefaultAsync(r => r.Id == id);
+        if (rating == null)
+        {
+            return NotFound();
+        }
+
+        _context.Set<Rating>().Remove(rating);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+    }
+
+
+    /*public class RatingVM
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public UsersVM users { get; set; }
+    }*/

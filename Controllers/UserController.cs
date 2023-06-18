@@ -12,55 +12,75 @@ using FoodOrdering.ViewModels;
 
 public class UsersController : ControllerBase
 {
-    private List<User> users = new List<User>(); 
+    private readonly DbContext _context;
+
+    public UsersController(DbContext context)
+    {
+        _context = context;
+    }
 
     [HttpGet]
-    public IActionResult GetUsers()
+    public async Task<IEnumerable<User>> Get()
     {
-        return Ok(users);
+        var userList = await _context.Set<User>().ToListAsync();
+        return userList;
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetUser(int id)
+    public async Task<ActionResult<User>> Get(int id)
     {
-        User user = users.Find(u => u.Id == id);
+        var user = await _context.Set<User>().FirstOrDefaultAsync(u => u.Id == id);
         if (user == null)
         {
             return NotFound();
         }
-        return Ok(user);
+        return user;
     }
 
     [HttpPost]
-    public IActionResult AddUser(User user)
+    public async Task<ActionResult> Post(UsersVM vm)
     {
-        user.Id = users.Count + 1;
-        users.Add(user);
-        return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+        var user = new User
+        {
+            Name = vm.Name,
+            Id = vm.Id,
+        };
+
+        _context.Set<User>().Add(user);
+        await _context.SaveChangesAsync();
+
+        return Ok();
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateUser(int id, User user)
+    public async Task<IActionResult> Put(int id, UsersVM vm)
     {
-        User existingUser = users.Find(u => u.Id == id);
-        if (existingUser == null)
+        var user = await _context.Set<User>().FirstOrDefaultAsync(u => u.Id == id);
+        if (user == null)
         {
             return NotFound();
         }
-        existingUser.Name = user.Name;
-        existingUser.Email = user.Email;
+
+        user.Name = vm.Name;
+        user.Id = vm.Id;
+
+        await _context.SaveChangesAsync();
+
         return NoContent();
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeleteUser(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        User user = users.Find(u => u.Id == id);
+        var user = await _context.Set<User>().FirstOrDefaultAsync(u => u.Id == id);
         if (user == null)
         {
             return NotFound();
         }
-        users.Remove(user);
+
+        _context.Set<User>().Remove(user);
+        await _context.SaveChangesAsync();
+
         return NoContent();
     }
 }
