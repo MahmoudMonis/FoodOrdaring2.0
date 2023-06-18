@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FoodOrdaring.ViewModels.FoodItem
+namespace FoodOrdaring2.ViewModels.SubCategory
 {
-    public class DeleteFoodVM
+    public class DeleteSubCategoryVM
     {
         public int Id { get; set; }
-        
-        public int SubCategoryId { get; set; }
     }
 }

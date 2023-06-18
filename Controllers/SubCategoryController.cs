@@ -12,7 +12,7 @@ namespace FoodOrdaring.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
-    public class SubCategoryController
+    public class SubCategoryController : ControllerBase
     {
         private readonly DbConnection _context;
         public SubCategoryController(DbConnection context)
@@ -47,8 +47,16 @@ namespace FoodOrdaring.Controllers
             };
             _context.SubCategories.Add(subcategory);
             await _context.SaveChangesAsync();
-            // return ok(subcategory);
-            return null;
+             return Ok();
+            
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {   
+            var subcategory = await _context.SubCategories.FindAsync(id);
+            _context.SubCategories.Remove(subcategory);
+            await _context.SaveChangesAsync();
+            return Ok();
     }
+}
 }

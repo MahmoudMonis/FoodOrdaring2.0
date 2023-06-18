@@ -67,10 +67,12 @@ namespace FoodOrdaring.Controllers
             {
 
                 Name = p.Name,
+                
 
                 SubCategory = new SubCategoryVM
                 {
                     Id = p.SubCategory.Id,
+                    
                     Name = p.SubCategory.Name,
 
                 }
@@ -83,21 +85,31 @@ namespace FoodOrdaring.Controllers
             var foodItem = new FoodItem
             {
                 Name = itemVM.Name,
+                Description = itemVM.Description,
+               
                 SubCategoryId = itemVM.SubCategoryId,
+                
+                
+                
             };
             _context.FoodItems.Add(foodItem);
             await _context.SaveChangesAsync();
             return Ok();
 
         }
-        [HttpDelete]
+
+        [HttpDelete("{id}")]
+      
         public async Task<IActionResult> Delete(int id)
         {
-
-            var item = await _context.FoodItems.FindAsync(id);
-            _context.FoodItems.Remove(item);
+            
+            var foodItem = await _context.FoodItems.FindAsync(id);
+            _context.FoodItems.Remove(foodItem);
             await _context.SaveChangesAsync();
             return Ok();
         }
     }
-}
+       
+    }
+
+    
