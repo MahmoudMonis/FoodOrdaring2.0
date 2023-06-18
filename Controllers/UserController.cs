@@ -84,3 +84,9 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 }
+
+/* public class UsersVM
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }*/
