@@ -45,6 +45,14 @@ namespace FoodOrdaring.Controllers
                 return Ok(category);
 
     }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var category = await _context.Categories.FindAsync(id);
+        _context.Categories.Remove(category);
+        await _context.SaveChangesAsync();
+        return Ok();
     
     }
+}
 }

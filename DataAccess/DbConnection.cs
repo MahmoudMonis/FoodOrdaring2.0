@@ -19,7 +19,7 @@ namespace FoodOrdering.DBAccess
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
-                "Host=localhost;port=5432;Database=FoodOrdering;Username=postgres;Password=123093;IncludeErrorDetail=true;");
+                "Host=localhost;port=5432;Database=FoodOrdering;Username=postgres;Password=1998;IncludeErrorDetail=true;");
         }
     }
 }
